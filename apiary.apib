@@ -1,0 +1,38 @@
+FORMAT: 1A
+HOST: https://polls.apiblueprint.org/
+
+# intelpos.client.api
+
+## Cards Collection [/cards]
+
+### Получение данных одной карточки [GET]
+
++ Response 200 (application/json)
+
+        [
+            {
+                "term": "my first term.",
+                "definition": "my first definition"
+            }
+        ]
+
+### Создать новую карточку [POST]
+
++ Request (application/json)
+
+        {
+            "term": "my first term.",
+            "definition": "my first definition"
+        }
+
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: /cards/2
+
+    + Body
+
+            {
+                "status_code": 200,
+            }
