@@ -4,8 +4,9 @@ namespace test
 {
     public class UserInput
     {
-        [JsonProperty("name")]
-        public string Name { get; set; }
-        
+        [JsonProperty("Email")]
+        public string Email { get; set; }
+        [JsonProperty("Password")]
+        public string Password { get; set; }
     }
 }

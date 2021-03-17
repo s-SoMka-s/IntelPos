@@ -9,10 +9,9 @@ namespace test
 {
     [ApiController]
     [Route("Users")]
-    public class UserController:Controller
+    public class UserController : Controller
     {
         public UserController() { }
-
         [HttpGet("")]
         public List<User> GetUsers()
         {
@@ -20,12 +19,16 @@ namespace test
             var user = context.Users.ToList();
             return user;
         }
+
         [HttpPost("")]
-        public void AddUsers(UserInput parameters)
-        {
+        public string AddUsers(UserInput parameters)
+        { 
             var context = new ApplicationContext();
-            context.Users.Add(new User(parameters.Name));
+            if (context.Users.Find(parameters.Email) != null) return "This email was already registered";
+            context.Users.Add(new User(parameters.Email, parameters.Password));
             context.SaveChanges();
+            return "You are with us now";
+            //Пиздец,янаэтопотратил2часаахуеть
         }
     }
 }

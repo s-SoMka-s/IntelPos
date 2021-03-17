@@ -11,7 +11,7 @@ namespace test
         public BoxController() { }
 
         [HttpGet("Cards")]
-        public List<Card> GetCards()
+        public List<Card> GetCards(/*[FromBody ]]*/)
         {
             var context = new ApplicationContext();
             var cards = context.Cards.ToList();

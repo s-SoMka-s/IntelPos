@@ -10,12 +10,12 @@ namespace test
     public class User
     {
         [Key]
-        public long Id { get; set; }
-        public string Name { get; set; }
-
-        public User(string name)
+        public string Email { get; set; }
+        public string Password { get; set; }
+        public User(string email,string password)
         {
-            Name = name;
+            Email = email;
+            Password = password;
         }
     }
 }
