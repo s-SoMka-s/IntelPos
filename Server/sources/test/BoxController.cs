@@ -2,7 +2,7 @@
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 
-namespace test
+namespace IntelPos
 {
     [ApiController]
     [Route("Boxes")]

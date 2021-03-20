@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace test
+namespace IntelPos
 {
     public class Card
     { 
