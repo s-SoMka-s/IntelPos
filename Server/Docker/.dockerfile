@@ -8,7 +8,7 @@ FROM mcr.microsoft.com/dotnet/sdk:5.0-buster-slim AS builder
 WORKDIR /Sources
 COPY . .
 
-RUN dotnet publish /Sources/Citylogia.Server/Citylogia.Server.csproj --output /app/ --configuration Release
+RUN dotnet publish /Sources/IntelPos/IntelPos.csproj --output /app/ --configuration Release
 
 #
 #
@@ -20,4 +20,4 @@ WORKDIR /app
 
 COPY --from=builder /app .
 
-ENTRYPOINT ["dotnet", "Citylogia.Server.dll"]
+ENTRYPOINT ["dotnet", "IntelPos.dll"]
