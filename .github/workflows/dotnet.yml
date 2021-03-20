@@ -42,8 +42,7 @@ jobs:
         context: ./Server/Sources
         # Path to the Dockerfile
         file: ./Server/Docker/.dockerfile
-        # List of build-time variables
-        build-args: "-t somka4docker/intelpos"
+        repository: somka4docker/intelpos
         # List of tags
         tags: latest
         # Push is a shorthand for --output=type=registry
