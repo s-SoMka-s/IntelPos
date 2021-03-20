@@ -1,34 +1,41 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
+using IntelPos.Output;
 using Microsoft.AspNetCore.Mvc;
 
-namespace test
+namespace IntelPos
 {
     [ApiController]
     [Route("Users")]
     public class UserController : Controller
     {
         public UserController() { }
+
+
         [HttpGet("")]
-        public List<User> GetUsers()
+        public BaseApiResponse<BaseCollectionResponse<User>> GetUsers()
         {
-            var context = new ApplicationContext();
-            var user = context.Users.ToList();
-            return user;
+            using var context = new ApplicationContext();
+            var users = context.Users.ToList();
+
+            var collectionResponse = new BaseCollectionResponse<User>(users);
+            return new BaseApiResponse<BaseCollectionResponse<User>>(200, collectionResponse);
         }
 
         [HttpPost("")]
-        public string AddUsers(UserInput parameters)
-        { 
-            var context = new ApplicationContext();
-            if (context.Users.Find(parameters.Email) != null) return "This email was already registered";
+        public BaseApiResponse<bool> Register(UserInput parameters)
+        {
+            using var context = new ApplicationContext();
+            
+            var existed = context.Users.Find(parameters.Email);
+            if (existed != default)
+            {
+                return new BaseApiResponse<bool>(200, false);
+            }
+
             context.Users.Add(new User(parameters.Email, parameters.Password));
             context.SaveChanges();
-            return "You are with us now";
-            //Пиздец,янаэтопотратил2часаахуеть
+            
+            return new BaseApiResponse<bool>(200, true);
         }
     }
 }

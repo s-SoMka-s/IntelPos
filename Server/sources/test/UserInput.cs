@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace test
+namespace IntelPos
 {
     public class UserInput
     {
