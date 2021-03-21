@@ -53,3 +53,12 @@ jobs:
         tags: somka4docker/intelpos:latest
         # Push is a shorthand for --output=type=registry
         push: true
+  
+  redeploy:
+    runs-on: ubuntu-latest
+    needs: [docker]
+    steps:
+      - name: redeploy
+        uses: joelwmale/webhook-action@master
+        env:
+          WEBHOOK_URL: ${{ secrets.DEPLOY_WEBHOOK_URL }}
