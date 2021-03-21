@@ -19,9 +19,13 @@ namespace IntelPos
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
-
             app.UseRouting();
+
+            app.UseHttpsRedirection();
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
+
+       
 
             app.UseEndpoints(endpoints =>
             {
