@@ -3,7 +3,7 @@ name: .NET
 on:
   push:
     branches: [ Nikita ]
-  commit_comment:
+  pull_request: 
     branches: [ Nikita ]
 
 defaults:
