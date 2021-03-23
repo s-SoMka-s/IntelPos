@@ -2,8 +2,10 @@ name: .NET
 
 on:
   pull_request:
-    branches: [Nikita]
+    branches: [master]
     types: [closed]
+  push:
+    branches: [Nikita]
 
 defaults:
   run:
