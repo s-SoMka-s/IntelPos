@@ -1,7 +1,7 @@
 name: .NET
 
 on:
-  push:
+  commit_comment:
     branches: [Nikita]
     types: [closed]
 
