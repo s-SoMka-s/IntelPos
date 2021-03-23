@@ -3,8 +3,6 @@ name: .NET
 on:
   push:
     branches: [ Nikita ]
-  pull_request:
-    branches: [ Nikita ]
 
 defaults:
   run:
