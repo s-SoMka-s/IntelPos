@@ -58,6 +58,6 @@ jobs:
     needs: [docker]
     steps:
       - name: redeploy
-        uses: joelwmale/webhook-action@Nikita
+        uses: joelwmale/webhook-action@master
         env:
           WEBHOOK_URL: ${{ secrets.DEPLOY_WEBHOOK_URL }}
