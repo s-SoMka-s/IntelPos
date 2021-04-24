@@ -2,16 +2,21 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Формы в HTML5</title>
+    <title>Вход</title>
 </head>
 <body>
-    <form>
-        <p><input type="text" name="login" /></p>
-        <p><input type="password" name="password" /></p>
-        <p>
-            <button type="submit" formmethod="get" formaction="index.html">Отправить</button>
-            <button type="reset">Отмена</button>
-        </p>
+    <form action="http://178.154.200.103:4040/Users" method="post">
+        <div>
+            <label for="Email">Login</label>
+            <input name="Email" id="Email" value=" ">
+        </div>
+        <div>
+            <label for="Password">Password</label>
+            <input type="password" name="Password" id="Password" value="хехе">
+        </div>
+        <div>
+            <button>Input</button>
+        </div>
     </form>
 </body>
 </html>

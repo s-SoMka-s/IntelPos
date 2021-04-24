@@ -1,7 +1,14 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Specialized;
+using System.IO;
+using System.Linq;
+using System.Net;
+using System.Text;
+using System.Threading.Tasks;
 using IntelPos.Controllers.Models.Input;
 using IntelPos.Controllers.Models.Output;
 using Microsoft.AspNetCore.Mvc;
+
 
 namespace IntelPos.Controllers
 {
@@ -23,20 +30,21 @@ namespace IntelPos.Controllers
         }
 
         [HttpPost("")]
-        public BaseApiResponse<bool> Register(UserInput parameters)
+        public BaseApiResponse<bool> Register()
         {
             using var context = new ApplicationContext();
-
-            var existed = context.Users.Find(parameters.Email);
+            
+            var existed = context.Users.Find(Request.Form["Email"]);
             if (existed != default)
             {
                 return new BaseApiResponse<bool>(200, false);
             }
-
-            context.Users.Add(new User(parameters.Email, parameters.Password));
+            Console.WriteLine(Request.Form["Email"], Request.Form["Password"]);
+            context.Users.Add(new User(Request.Form["Email"], Request.Form["Password"]));
             context.SaveChanges();
 
             return new BaseApiResponse<bool>(200, true);
         }
+        
     }
 }
