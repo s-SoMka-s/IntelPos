@@ -1,10 +1,20 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using IntelPos.Entities.BaseDataType;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace IntelPos
 {
-    public class Box
+    [Table("Boxes")]
+    public class Box : BaseDataType
     {
-        [Key]
-        public long Id { get; set; }
+        public Box() : base()
+        {
+            this.Name = string.Empty;    
+        }
+
+
+        public string Name { get; set; }
+        public virtual ICollection<Card> Cards { get; set; }
     }
+
 }

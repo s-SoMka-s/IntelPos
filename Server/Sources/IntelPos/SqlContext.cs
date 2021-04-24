@@ -2,14 +2,46 @@
 
 namespace IntelPos
 {
-    public class ApplicationContext : DbContext
+    public class SqlContext : DbContext
     {
-        public DbSet<Card> Cards { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Card> Cards { get; set; }
         public DbSet<Box> Boxes { get; set; }
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+
+        public SqlContext() : base() { }
+
+        public SqlContext(DbContextOptions<SqlContext> options) : base(options) { }
+
+
+        protected override void OnModelCreating(ModelBuilder builder)
         {
-            optionsBuilder.UseNpgsql("Host=178.154.200.103;Port=5432;Database=intelpos;Username=novik;Password=12345");
+            base.OnModelCreating(builder);
+
+            builder.HasDefaultSchema("intelpos");
+
+
+            #region User
+            {
+                var user = builder.Entity<User>();
+            }
+            #endregion User
+
+
+            #region Card
+            {
+                var card = builder.Entity<Card>();
+
+                card.HasOne(c => c.Box)
+                    .WithMany(b => b.Cards)
+                    .OnDelete(DeleteBehavior.Cascade);
+            }
+            #endregion Card
+
+            #region Box
+            {
+                var box = builder.Entity<Box>();
+            }
+            #endregion Box
         }
     }
 }

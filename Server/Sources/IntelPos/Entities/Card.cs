@@ -1,10 +1,22 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using IntelPos.Entities.BaseDataType;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace IntelPos
 {
-    public class Card
+    public class Card : BaseDataType
     {
-        [Key]
-        public long Id { get; set; }
+        public Card() : base() {
+            this.Term = string.Empty;
+            this.Definition = string.Empty;
+            this.Box = default;
+        }
+
+
+        public string Term { get; set; }
+        public string Definition { get; set; }
+
+        [ForeignKey(nameof(Box))]
+        public long BoxId { get; set; }
+        public Box Box { get; set; }
     }
 }

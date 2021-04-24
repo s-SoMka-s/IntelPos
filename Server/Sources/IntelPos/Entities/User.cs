@@ -1,16 +1,19 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using IntelPos.Entities.BaseDataType;
 
 namespace IntelPos
 {
-    public class User
+    public class User : BaseDataType
     {
-        [Key]
+        public User() : base()
+        {
+            this.Email = string.Empty;
+            this.Password = string.Empty;
+            this.Name = string.Empty;
+        }
+
+
         public string Email { get; set; }
         public string Password { get; set; }
-        public User(string email, string password)
-        {
-            Email = email;
-            Password = password;
-        }
+        public string Name { get; set; }
     }
 }
